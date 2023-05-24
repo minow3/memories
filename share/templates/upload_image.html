@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class='ulpoad-image'>
+    <form method="post" enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class='custom-file'>
+            <label for="id_image" class='custom-file-label' id='imagelabel'>Choose file</label>
+            {{form.image}}  
+        </div>
+        <div class='upload-text'>
+            <label for='id_content' class='upload-text-label'>Text</label>
+            {{form.content}}
+        </div>
+        <input type="submit" value="Upload">
+
+    </form>    
+</div>
+
+
+{% endblock content %}
+
+{% block script %}
+
+<script>
+    let image = document.getElementByID('id_image')
+    image.addEventListener('change', showfilename)
+    function showfilename(){
+        document.getElementByID('imagelabel').innerText = image.files[0].name
+    }
+{% endblock script %}
